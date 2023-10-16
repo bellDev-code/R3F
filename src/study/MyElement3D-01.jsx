@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { useRef } from "react"
 import * as THREE from "three"
 
-const MyElement3D = () => {
+const Coordinate = () => {
     const refMesh = useRef()
     useFrame((state, delta) => {
         refMesh.current.rotation.y += delta
@@ -44,4 +44,4 @@ const MyElement3D = () => {
     )
 }
 
-export default MyElement3D
+export default Coordinate

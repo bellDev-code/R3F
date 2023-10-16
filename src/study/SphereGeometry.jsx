@@ -8,13 +8,19 @@ const MyElement3D = () => {
     const refWireMesh = useRef()
 
     // UI 조절 코드
-    const { topRadius } = useControls({
-        topRadius: { value: 1, min: 0.1, max: 5, step: 0.01}
+    const { radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength } = useControls({
+        radius: { value: 1, min: 0.1, max: 5, step: 0.1 },
+        widthSegments: { value: 32, min: 3, max: 256, step: 1 },
+        heightSegments: { value: 32, min: 2, max: 256, step: 1 },
+        phiStart: { value: 0, min: 0, max: 360, step: 0.1},
+        phiLength: { value: 360, min: 0, max: 360, step: 0.1},
+        thetaStart: { value: 0, min: 0, max: 180, step: 0.1},
+        thetaLength: { value: 180, min: 0, max: 180, step: 0.1}
     }) 
 
     useEffect(() => {
         refWireMesh.current.geometry = refMesh.current.geometry
-    }, [topRadius])
+    }, [radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength])
 
     return (
         <>
@@ -26,8 +32,11 @@ const MyElement3D = () => {
 
         {/* 현재 mesh 두 개는 같은 코드를 사용하여 메모리 낭비가 있음 */}
         <mesh ref={refMesh}>
-            <cylinderGeometry 
-                args={[topRadius]} />
+            <sphereGeometry 
+                args={[radius, widthSegments, heightSegments, 
+                phiStart * Math.PI/180, phiLength * Math.PI/180, thetaStart * Math.PI/180, 
+                thetaLength * Math.PI/180
+            ]} />
             <meshStandardMaterial color="#1abc9c" />
         </mesh>
 
