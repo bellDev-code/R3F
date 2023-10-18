@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import './App.css';
-import MyElement3D from './DreiMaterial';
+import MyElement3D from './ImageMesh';
 
 function App() {
   return (
